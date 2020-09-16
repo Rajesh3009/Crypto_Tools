@@ -5,4 +5,6 @@
     <string name="percentage_changed_1_s">Percent Changed : </string>
     <string name="changed_price">Changed Price</string>
     <string name="original_price">Original Price</string>
+    <string name="down">DOWN</string>
+    <string name="up">UP</string>
 </resources>
