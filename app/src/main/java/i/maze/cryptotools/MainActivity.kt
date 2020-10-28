@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -14,8 +16,18 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        am_slider.addOnChangeListener { slider, value, fromUser ->
+        am_slider.addOnChangeListener { _, value, _ ->
             cal(value.toDouble())
+        }
+        am_slider_2.addOnChangeListener { _, value, _ ->
+            cal(value.toDouble())
+        }
+        cal.setOnClickListener {
+            if (per.text?.isNotEmpty()!!) {
+                cal(per.text.toString().toDouble())
+            } else {
+                cal(0.0)
+            }
         }
     }
 
@@ -33,7 +45,7 @@ class MainActivity : AppCompatActivity() {
             am_priceDOWN_tv.text = getString(
                 R.string.percentage_changed_1_s
             ) + "  " + changed(
-                org.text!!.toString().toDouble(),
+                org.text.toString().toDouble(),
                 chan.text.toString().toDouble()
             ) + '%'
         }
@@ -48,7 +60,7 @@ class MainActivity : AppCompatActivity() {
         return (((changed - orginal) / orginal) * 100).toFloat().toString()
     }
 
-    fun comp(x: Double, y: Double) {
+    private fun comp(x: Double, y: Double) {
         val mComp = up(x, y).toDouble()
         am_comp_up_tv.text = (x + mComp).toString()
         am_comp_down_tv.text = (x - mComp).toString()
