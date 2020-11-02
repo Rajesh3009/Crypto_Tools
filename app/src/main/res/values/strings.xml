@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">Crypto Tools</string>
-    <string name="percentage">Percent : </string>
-    <string name="original_price_change_1_s">Original Price Change : </string>
+    <string name="percentage">Percent </string>
+    <string name="original_price_change_1_s">Absolute Difference :</string>
     <string name="percentage_changed_1_s">Percent Changed : </string>
-    <string name="changed_price">Changed Price</string>
-    <string name="original_price">Original Price</string>
+    <string name="changed_price">Final Amount</string>
+    <string name="original_price">Initial Amount</string>
     <string name="down">DOWN</string>
     <string name="up">UP</string>
     <string name="calculate">Calculate</string>

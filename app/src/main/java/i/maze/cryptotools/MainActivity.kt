@@ -17,51 +17,51 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         am_slider.addOnChangeListener { _, value, _ ->
-            cal(value.toDouble())
+            fCalculation(value.toDouble())
         }
         am_slider_2.addOnChangeListener { _, value, _ ->
-            cal(value.toDouble())
+            fCalculation(value.toDouble())
         }
         cal.setOnClickListener {
             if (per.text?.isNotEmpty()!!) {
-                cal(per.text.toString().toDouble())
+                fCalculation(per.text.toString().toDouble())
             } else {
-                cal(0.0)
+                fCalculation(0.0)
             }
         }
     }
 
     @SuppressLint("SetTextI18n")
-    private fun cal(value: Double) {
+    private fun fCalculation(value: Double) {
         val num = "%.2f".format(value)
         am_percent_tv.text = getString(R.string.percentage) + "  " + num + "%"
         if (!org.text.isNullOrEmpty()) {
             am_priceUp_tv.text = getString(
                 R.string.original_price_change_1_s
-            ) + "  " + up(org.text!!.toString().toDouble(), num.toDouble())
-            comp(org.text!!.toString().toDouble(), num.toDouble())
+            ) + "  " + fAbsoluteDifference(org.text!!.toString().toDouble(), num.toDouble())
+            fCompound(org.text!!.toString().toDouble(), num.toDouble())
         }
         if (!org.text.isNullOrEmpty() && !chan.text.isNullOrEmpty()) {
             am_priceDOWN_tv.text = getString(
                 R.string.percentage_changed_1_s
-            ) + "  " + changed(
+            ) + "  " + fDifference(
                 org.text.toString().toDouble(),
                 chan.text.toString().toDouble()
             ) + '%'
         }
     }
 
-    private fun up(num: Double, per: Double): String {
-        return ((per * num) / 100).toFloat().toString()
+    private fun fAbsoluteDifference(num: Double, per: Double): String {
+        return ((per * num) / 100).toString()
 
     }
 
-    private fun changed(orginal: Double, changed: Double): String {
-        return (((changed - orginal) / orginal) * 100).toFloat().toString()
+    private fun fDifference(original: Double, changed: Double): String {
+        return (((changed - original) / original) * 100).toFloat().toString()
     }
 
-    private fun comp(x: Double, y: Double) {
-        val mComp = up(x, y).toDouble()
+    private fun fCompound(x: Double, y: Double) {
+        val mComp = fAbsoluteDifference(x, y).toDouble()
         am_comp_up_tv.text = (x + mComp).toString()
         am_comp_down_tv.text = (x - mComp).toString()
     }
